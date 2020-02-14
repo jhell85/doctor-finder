@@ -12,16 +12,20 @@ $(document).ready(function() {
   $('#b').click(function() {
     const docName = "Smith";
     (async () => {
-      console.log("button clicked");
-      
       let doctor = new Doctor();
       const response = await doctor.getDoctor(docName);
-      console.log(response);
-      getElements(response);
+      getElements(response.data);
 
     })();
 
     function getElements(response){
+      // console.log(response);
+      response.forEach(doctor => {
+        console.log(`First name : ${doctor.profile.first_name} Last name:${doctor.profile.last_name}`);
+      });
+   
+      
+
     }
 
 
