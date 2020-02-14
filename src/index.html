@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-  <div class="container">
+  <div id="search" class="container">
     <div class="form-group">
       <label for="name search">Name</label>
       <input type="text" class="form-control" id="name" placeholder="use first or last name">
@@ -17,7 +17,16 @@
     </div>
     <button id="search" class="btn btn-primary">Search</button>
   </div>
-<div id="output">
-  <ul id="docList"></ul>
-</div>
+  <div class="container" id="output">
+    <table class="table table-sm" id="docList">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col">#</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </body>
