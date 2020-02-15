@@ -4,3 +4,9 @@
 .table{
   display: none;
 }
+.docInfo{
+  display: none;
+}
+.specialties{
+  list-style: none;
+}
