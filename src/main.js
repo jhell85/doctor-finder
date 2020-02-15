@@ -13,13 +13,24 @@ function showDoctors(docArray) {
   }
 }
 
+function doctorSpecialties(specialtiesArray){
+  let htmlSpecialties = ""; 
+  specialtiesArray.forEach(specialty => {
+    htmlSpecialties += `<li>${specialty.name}</li>`;
+  });
+  return htmlSpecialties;
+}
+
 function showDocInfo(ID, data){
   data.forEach(doctor => {
     if (doctor.uid === ID){
+      let profileContainer = `<h4>${doctor.profile.first_name} ${doctor.profile.last_name}</h4><h5>Specialties:<h5><ul class="specialties">${doctorSpecialties(doctor.specialties)}</ul>`;
       
+
       $(".table").fadeOut();
+      $(".docInfo").show(1000);
       console.log(doctor.profile.last_name);
-      
+      $(".docProfile").html(profileContainer);
     }
     
   });
