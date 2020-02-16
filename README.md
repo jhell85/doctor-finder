@@ -6,14 +6,12 @@
 [link to demo site coming](#)
 
 ## Description
-
-There is a pre-built two input form with a submit button. There is also a simple jQuery function that will console.log when the submit button is clicked.
-
-The .gitignore file is a template for mac osx but a link is provided to get a template for any operating system. 
-
-[create a .gitignore template for your os here](https://www.gitignore.io/)
-
+an app that lets you search betterdoctor.com 's API and find a doctor from a name search and/or a doctor specialty
 ## Setup/Installation Requirements
+
+You will need to register for an API key at 
+https://developer.betterdoctor.com/
+
 
 _Make sure you have [git version control](https://git-scm.com/downloads) installed on your computer._
 
@@ -30,35 +28,33 @@ cd desktop
  cd ~/Desktop
  ```
 
- 3. in terminal type '_git clone {link to repository}_ '
+ 3. in terminal type '_git clone https://github.com/jhell85/doctor-finder.git_ '
 
 ```sh
-git clone Link-Here
+git clone https://github.com/jhell85/doctor-finder.git
 ```
 
 4. navigate to the new folder that was created on your desk
 ```sh
-cd folder name
+cd doctor-finder
 ```
 
 5. run npm install
 ```sh
 npm install
 ```
+6. create a .env flie 
+```sh
+touch .env 
+```
+7. place your API key from https://developer.betterdoctor.com/ in your .env file
+```sh
+echo API_KEY = {your api key here remove {}} >> .env
+```
+
 6. run development server
 ```sh
 npm run start
-```
-
-7. edit files in '/src' to make changes to the project.
-
-8. remove .git delete this projects commit history
-```sh
-rm -rf .git
-```
-9. start your new git repository 
-```sh
-git init
 ```
 
 
@@ -89,25 +85,6 @@ _The software is provided as is. It might work as expected - or not. Use at your
 * [Uglifyjs](https://www.uglifyjs.net/)
 * [Jest](https://jestjs.io/)
 
-## Useful tools
-
-* [free icons @ icons8](https://icons8.com/)
-* [free  icons @ fontawesome](https://fontawesome.com/)
----
-* [Old School Gifs Search](https://gifcities.org/)
-* [free images @ unsplash](https://unsplash.com/)
-    * **_source.unsplash.com_ will return a random image at a desired size by simply calling the size after the url followed by a '?' and a keyword. Example below**
-
-    * _https://source.unsplash.com/400x400/?cat_
-    * http://unsplash.it/500/500 - This will just return a random image the size of 500x500
----
-* [Flex-box Cheat Sheet](http://yoksel.github.io/flex-cheatsheet/)
-* [CSS Grid Cheat Sheet](http://grid.malven.co/)
----
-* [CSS Gradient BG Generator](https://mycolor.space/gradient)
-* [CSS Basic Gradient Generator](https://cssgradient.io/)
----
-* [CSS Dropshadow Generator](https://cssgenerator.org/box-shadow-css-generator.html)
 
 ### License
 
