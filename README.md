@@ -64,7 +64,9 @@ npm run start
 
 Behavoir | Input | Output
 :---------|:------:|:------:
-|1 - The program will take in a simple input and return the input | 'hello' | 'hello' |
+|1 - The program will let you put in a name in an input box and it'll return a list of doctor's names including the input | 'Smith' | 'return a list of names with smith in first or last name' |
+|2 - The program will take in a list of specialties from a list populated from an API | 'hello' | 'hello' |
+
 
 
 ## Support 
