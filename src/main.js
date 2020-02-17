@@ -21,16 +21,38 @@ function doctorSpecialties(specialtiesArray){
   return htmlSpecialties;
 }
 
+function fillPracticesTable(practices){
+  practices.forEach(practice => {
+    $("#practicesTable").append(`<tr class="table-info"><td><b>${practice.name}</b><br>${practice.visit_address.street}<br>${practice.visit_address.city} ${practice.visit_address.state} ${practice.visit_address.zip}</td><td>${formatPhoneNumber(practice.phones)}</td><td><a href="${practice.website}">website</a></td></tr>`);
+    
+  });
+}
+
+function formatPhoneNumber(phoneNumbers) {
+  let htmlToReturn = "";
+  phoneNumbers.forEach(pNumber => {
+    let pNumberDirty = pNumber.number;
+    let cleaned = ('' + pNumberDirty).replace(/\D/g, '');
+    let match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      let intlCode = (match[1] ? '+1 ' : '');
+      let pNumberClean = [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+      htmlToReturn += `${pNumber.type} : <br><i>${pNumberClean}</i><br>`;
+    }
+    return null;
+  });
+  return htmlToReturn;
+}
+
 function showDocInfo(ID, data){
   data.forEach(doctor => {
     if (doctor.uid === ID){
-      let profileContainer = `<h4>${doctor.profile.first_name} ${doctor.profile.last_name}</h4><h5>Specialties:<h5><ul class="specialties">${doctorSpecialties(doctor.specialties)}</ul>`;
-      
-
+      let profileContainer = `<h4>${doctor.profile.first_name} ${doctor.profile.last_name}</h4><div><h5>Specialties:<h5></div><ul class="specialties">${doctorSpecialties(doctor.specialties)}</ul>`;
       $(".table").fadeOut();
       $(".docInfo").show(1000);
-      console.log(doctor.profile.last_name);
       $(".docProfile").html(profileContainer);
+      fillPracticesTable(doctor.practices);
+  
     }
     
   });
@@ -41,18 +63,21 @@ $(document).ready(function() {
   let response;
   $('#search').click(function() {
     const docName = $("#name").val();
+    const specialty = "sleep-medicine-doctor";
     (async () => {
       let doctor = new Doctor();
-      response = await doctor.getDoctor(docName);
+      response = await doctor.getDoctor(docName, specialty);
       getElements(response.data);
     })();
 
     function getElements(response){
       if (response.length === 0) {
         $("#output").text("Sorry no Doctors found.");
-      } else 
+      } else{ 
+        $(".docList").remove;
         $(".table").show(1000);
-      showDoctors(response);
+        showDoctors(response);
+      }
     }
     $(".table").on("click", "button", function() {
       let doctorID = $(this).attr("value");
