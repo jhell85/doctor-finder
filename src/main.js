@@ -61,20 +61,41 @@ function showDocInfo(ID, data){
 
 $(document).ready(function() {
   let response;
+  let doctor = new Doctor();
+
+  (async () => {
+    response = await doctor.getSpecialties();
+    populateSpecialties(response.data);
+  })();
+
+  function populateSpecialties(response){
+    let specialtiesArray = response;
+    console.log(specialtiesArray);
+    
+    specialtiesArray.forEach(specialty => {
+      $("#specialty").append(`
+        <option value="${specialty.uid}">${specialty.name}</option>`);
+    
+    });
+
+    
+  }
+
   $('#search').click(function() {
     const docName = $("#name").val();
-    const specialty = "sleep-medicine-doctor";
+    const specialty = $("#specialty").val();
     (async () => {
-      let doctor = new Doctor();
       response = await doctor.getDoctor(docName, specialty);
       getElements(response.data);
     })();
 
     function getElements(response){
       if (response.length === 0) {
-        $("#output").text("Sorry no Doctors found.");
+        $(".table").hide();
+        $("#no_results").text("Sorry no Doctors found.");
       } else{ 
-        $(".docList").remove;
+       
+        $(".docList").remove();
         $(".table").show(1000);
         showDoctors(response);
       }
