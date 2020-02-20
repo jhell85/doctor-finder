@@ -22,7 +22,7 @@ export class Doctor {
   }
   async getSpecialties(){
   // eslint-disable-next-line no-undef
-    let response = await fetch(`https://api.betterdoctor.com/2016-03-01/specialties?user_key=8585cfdad468304e057080d3295a52b7`);
+    let response = await fetch(`https://api.betterdoctor.com/2016-03-01/specialties?user_key=${process.env.API_KEY}`);
 
 
     let jsonifiedResopnse;
