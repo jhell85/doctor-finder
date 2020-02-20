@@ -52,11 +52,8 @@ function showDocInfo(ID, data){
       $(".docInfo").show(1000);
       $(".docProfile").html(profileContainer);
       fillPracticesTable(doctor.practices);
-  
     }
-    
   });
-  console.log(ID);
 }
 
 $(document).ready(function() {
@@ -69,16 +66,15 @@ $(document).ready(function() {
   })();
 
   function populateSpecialties(response){
+    console.log(response);
+    if (!response){
+      $(".body").html('<img src="http://www.findmysoft.com/img/news/inside/Error-401_1460548854.jpg"/>');
+    }
     let specialtiesArray = response;
-    console.log(specialtiesArray);
-    
     specialtiesArray.forEach(specialty => {
       $("#specialty").append(`
         <option value="${specialty.uid}">${specialty.name}</option>`);
-    
     });
-
-    
   }
 
   $('#search').click(function() {
@@ -86,6 +82,7 @@ $(document).ready(function() {
     const specialty = $("#specialty").val();
     (async () => {
       response = await doctor.getDoctor(docName, specialty);
+      
       getElements(response.data);
     })();
 
