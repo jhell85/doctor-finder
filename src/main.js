@@ -22,6 +22,7 @@ function doctorSpecialties(specialtiesArray){
 }
 
 function fillPracticesTable(practices){
+  $("#practicesTable").html(`<thead><tr class="table-primary"><th scope="col">address</th><th scope="col">phone</th><th scope="col">website</th></tr></thead>`);
   practices.forEach(practice => {
     $("#practicesTable").append(`<tr class="table-info"><td><b>${practice.name}</b><br>${practice.visit_address.street}<br>${practice.visit_address.city} ${practice.visit_address.state} ${practice.visit_address.zip}</td><td>${formatPhoneNumber(practice.phones)}</td><td><a href="${practice.website}">website</a></td></tr>`);
     
@@ -66,7 +67,6 @@ $(document).ready(function() {
   })();
 
   function populateSpecialties(response){
-    console.log(response);
     if (!response){
       $(".body").html('<img src="http://www.findmysoft.com/img/news/inside/Error-401_1460548854.jpg"/>');
     }
@@ -80,6 +80,7 @@ $(document).ready(function() {
   $('#search').click(function() {
     const docName = $("#name").val();
     const specialty = $("#specialty").val();
+    $(".docInfo").fadeOut();
     (async () => {
       response = await doctor.getDoctor(docName, specialty);
       
@@ -89,9 +90,10 @@ $(document).ready(function() {
     function getElements(response){
       if (response.length === 0) {
         $(".table").hide();
+        $("#no_results").show();
         $("#no_results").text("Sorry no Doctors found.");
       } else{ 
-       
+        $("#no_results").hide();
         $(".docList").remove();
         $(".table").show(1000);
         showDoctors(response);
