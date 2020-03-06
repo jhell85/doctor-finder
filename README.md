@@ -87,7 +87,8 @@ _The software is provided as is. It might work as expected - or not. Use at your
 * [Uglifyjs](https://www.uglifyjs.net/)
 * [Jest](https://jestjs.io/)
 
-
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
