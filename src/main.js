@@ -24,8 +24,7 @@ function doctorSpecialties(specialtiesArray){
 function fillPracticesTable(practices){
   $("#practicesTable").html(`<thead><tr class="table-primary"><th scope="col">address</th><th scope="col">phone</th><th scope="col">website</th></tr></thead>`);
   practices.forEach(practice => {
-    $("#practicesTable").append(`<tr class="table-info"><td><b>${practice.name}</b><br>${practice.visit_address.street}<br>${practice.visit_address.city} ${practice.visit_address.state} ${practice.visit_address.zip}</td><td>${formatPhoneNumber(practice.phones)}</td><td><a href="${practice.website}">website</a></td></tr>`);
-    
+    $("#practicesTable").append(`<tr class="table-info"><td><b>${practice.name}</b><br>${practice.visit_address.street}<br>${practice.visit_address.city} ${practice.visit_address.state} ${practice.visit_address.zip}</td><td>${formatPhoneNumber(practice.phones)}</td><td><a href="${practice.website}">website</a></td></tr>`); 
   });
 }
 
