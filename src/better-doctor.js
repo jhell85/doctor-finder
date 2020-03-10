@@ -39,7 +39,7 @@ export class Doctor {
   }
   async getLocation() {
     let response = await fetch(
-      "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBEKom_qnRKCiDRSQ8yM8YY0wemlIcSqHQ"
+      `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${process.env.GOOGLE_API_KEY}`
     );
     return response;
 
